@@ -1,0 +1,2 @@
+  alpha  beta   interval         diff
+1  34.4 137.6 0.09993016 6.983553e-05
