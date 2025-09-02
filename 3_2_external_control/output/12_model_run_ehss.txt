@@ -1,0 +1,20 @@
+$`MCMC summary`
+Inference for Bugs model at "4", fit using jags,
+ 4 chains, each with 1e+05 iterations (first 10000 discarded), n.thin = 10
+ n.sims = 36000 iterations saved
+          mu.vect sd.vect     2.5%      25%      50%      75%    97.5%  Rhat n.eff
+beta.trt   -0.401   0.140   -0.675   -0.494   -0.400   -0.307   -0.126 1.001 36000
+beta0      -3.811   0.247   -4.303   -3.976   -3.809   -3.642   -3.337 1.001 28000
+r           1.094   0.065    0.968    1.049    1.093    1.138    1.223 1.001 23000
+deviance 1987.097   2.451 1984.302 1985.309 1986.468 1988.205 1993.460 1.001 36000
+
+For each parameter, n.eff is a crude measure of effective sample size,
+and Rhat is the potential scale reduction factor (at convergence, Rhat=1).
+
+DIC info (using the rule, pD = var(deviance)/2)
+pD = 3.0 and DIC = 1990.1
+DIC is an estimate of expected predictive error (lower deviance is better).
+
+$EHSS
+[1] 64.32353
+

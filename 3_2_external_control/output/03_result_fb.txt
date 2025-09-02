@@ -1,0 +1,29 @@
+$`Kaplan-Meier estimate (Full borrowing)`
+Call: survfit(formula = Surv(time, 1 - cnsr) ~ trt, data = data)
+
+        n events median 0.95LCL 0.95UCL
+trt=0 258    206   24.1    20.2    28.7
+trt=1 142     89   31.3    27.7    42.7
+
+$`AFT model (Full borrowing)`
+
+Call:
+survreg(formula = Surv(time, 1 - cnsr) ~ trt, data = data, dist = "weibull")
+              Value Std. Error     z       p
+(Intercept)  3.4478     0.0648 53.21 < 2e-16
+trt1         0.4015     0.1187  3.38 0.00072
+Log(scale)  -0.0732     0.0508 -1.44 0.14969
+
+Scale= 0.929 
+
+Weibull distribution
+Loglik(model)= -1347.9   Loglik(intercept only)= -1354
+	Chisq= 12.16 on 1 degrees of freedom, p= 0.00049 
+Number of Newton-Raphson Iterations: 5 
+n= 400 
+
+
+$`Hazard ratio scale (Full borrowing)`
+     trt1 
+0.6492361 
+

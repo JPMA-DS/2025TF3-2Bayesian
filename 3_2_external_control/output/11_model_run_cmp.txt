@@ -1,0 +1,17 @@
+Inference for Bugs model at "3", fit using jags,
+ 4 chains, each with 1e+05 iterations (first 10000 discarded), n.thin = 10
+ n.sims = 36000 iterations saved
+          mu.vect sd.vect     2.5%      25%      50%      75%    97.5%  Rhat n.eff
+beta.ext   -3.708   0.206   -4.120   -3.844   -3.702   -3.568   -3.311 1.002  4000
+beta.trt   -0.432   0.127   -0.685   -0.517   -0.430   -0.346   -0.184 1.001 19000
+beta0      -3.718   0.205   -4.129   -3.854   -3.713   -3.578   -3.328 1.002  3800
+r           1.076   0.055    0.972    1.039    1.075    1.113    1.185 1.001  4800
+tau      1033.955 999.154   41.410  321.845  733.631 1425.851 3724.537 1.001 36000
+deviance 2698.914   2.457 2695.995 2697.120 2698.309 2700.066 2705.267 1.001 16000
+
+For each parameter, n.eff is a crude measure of effective sample size,
+and Rhat is the potential scale reduction factor (at convergence, Rhat=1).
+
+DIC info (using the rule, pD = var(deviance)/2)
+pD = 3.0 and DIC = 2701.9
+DIC is an estimate of expected predictive error (lower deviance is better).

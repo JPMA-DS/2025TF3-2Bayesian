@@ -1,0 +1,30 @@
+$`Kaplan-Meier estimate (CC vs. HC)`
+Call: survfit(formula = Surv(time, 1 - cnsr) ~ ext, data = data.C)
+
+        n events median 0.95LCL 0.95UCL
+ext=0 158    125   25.2    20.2    30.3
+ext=1 100     81   21.8    15.1    31.5
+
+$`AFT model (CC vs. HC)`
+
+Call:
+survreg(formula = Surv(time, 1 - cnsr) ~ ext, data = data.C, 
+    dist = "weibull")
+              Value Std. Error     z      p
+(Intercept)  3.4802     0.0816 42.65 <2e-16
+ext1        -0.0825     0.1302 -0.63   0.53
+Log(scale)  -0.0918     0.0601 -1.53   0.13
+
+Scale= 0.912 
+
+Weibull distribution
+Loglik(model)= -914.4   Loglik(intercept only)= -914.6
+	Chisq= 0.4 on 1 degrees of freedom, p= 0.53 
+Number of Newton-Raphson Iterations: 5 
+n= 258 
+
+
+$`Hazard ratio scale (CC vs. HC)`
+    ext1 
+1.094619 
+
