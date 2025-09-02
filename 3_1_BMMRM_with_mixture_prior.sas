@@ -1,7 +1,7 @@
 /*Bayesian MMRM with a mixture prior*/
 
 /*
-"Sim" macro‚Ìà–¾:
+"Sim" macroã®èª¬æ˜:
 scenario:	1=Optimistic, 3=50% effect of optimistic scenario, 5=Tadalafil is no different than placebo (Null)
 prior: 			1=diffuse prior, 2=mixture prior, 3=modified mixture prior
 mixw: 			Weight for mixture prior(only prior=2)
@@ -9,21 +9,21 @@ suc: 			Threshold of success
 nperg: 		Number of patient by group
 */
 
-libname tf32 "Ši”[æ‚ÌƒtƒHƒ‹ƒ_ƒpƒX‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢";
+libname tf32 "æ ¼ç´å…ˆã®ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹ã‚’æŒ‡å®šã—ã¦ãã ã•ã„";
 
-/*"Sim"ƒ}ƒNƒ“à‚Å©“®Às‚·‚é‚½‚ßƒ}ƒNƒ•Ï”‚Ìw’è‚Í•s—v*/
+/*"Sim"ãƒã‚¯ãƒ­å†…ã§è‡ªå‹•å®Ÿè¡Œã™ã‚‹ãŸã‚ãƒã‚¯ãƒ­å¤‰æ•°ã®æŒ‡å®šã¯ä¸è¦*/
 %macro MCMC(ess=);
 %if &ess. = 0 %then %do;
 	ods output PostSumInt=PostSumInt;
 %end;
-/*ESS—p‚Éimproper prior‚Åmcmc‚ğÀs‚·‚é‚½‚ß‚ÌğŒ•ªŠò*/
+/*ESSç”¨ã«improper priorã§mcmcã‚’å®Ÿè¡Œã™ã‚‹ãŸã‚ã®æ¡ä»¶åˆ†å²*/
 %if &ess. = 1 %then %do;
 	%let prior_s=&prior.;
 	%let prior=1;
 	ods output PostSumInt=PostSumInt_ESS;
 %end;
 
-/*Šeprior‚Ìİ’è‚Í“K‹X’²®‚µ‚Äg—p‚µ‚Ä‚­‚¾‚³‚¢BŒ»İ‚Í"©ŒÈ‘ŠŠÖ‚ª‚‚¢"“™‚Ìwarning‚ª•po‚µ‚È‚¢‚æ‚¤‚É’²®‚µ‚Ä‚¨‚è‚Ü‚·B*/
+/*å„priorã®è¨­å®šã¯é©å®œèª¿æ•´ã—ã¦ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚ç¾åœ¨ã¯"è‡ªå·±ç›¸é–¢ãŒé«˜ã„"ç­‰ã®warningãŒé »å‡ºã—ãªã„ã‚ˆã†ã«èª¿æ•´ã—ã¦ãŠã‚Šã¾ã™ã€‚*/
 %if &prior.=1 %then %do;
 proc mcmc data=H6DMCLVHV seed=4989 nbi=10000 nmc=50000 thin=10
 	%if &ess. = 0 %then %do;
@@ -54,7 +54,7 @@ proc mcmc data=H6DMCLVHV seed=4989 nbi=10000 nmc=400000 thin=80 outpost=POST mon
   %if &prior. = 2 or &prior. = 3 %then %do;
   /*mixture prior*/
   /*adult component of the mixture prior*/
-  /*˜_•¶’†‚Å¦‚³‚ê‚½–‘O•ª•z‚ª”ñ³’è’ls—ñ‚Å‚ ‚Á‚½‚½‚ßilÌŒÜ“ü‚Æ‚©‚ÌŒ“‚Ë‡‚¢‚Æv‚í‚ê‚éj4,4—v‘f‚ğ82¨83A5,5—v‘f‚ğ89¨90‚É‚µ‚Ä³’è’ls—ñ‚É•ÏX‚µ‚½*/
+  /*è«–æ–‡ä¸­ã§ç¤ºã•ã‚ŒãŸäº‹å‰åˆ†å¸ƒãŒéæ­£å®šå€¤è¡Œåˆ—ã§ã‚ã£ãŸãŸã‚ï¼ˆå››æ¨äº”å…¥ã¨ã‹ã®å…¼ã­åˆã„ã¨æ€ã‚ã‚Œã‚‹ï¼‰4,4è¦ç´ ã‚’82â†’83ã€5,5è¦ç´ ã‚’89â†’90ã«ã—ã¦æ­£å®šå€¤è¡Œåˆ—ã«å¤‰æ›´ã—ãŸ*/
   array muA[4] muA1-muA4 (8 15 21 24);
   array SA[4, 4] SA1-SA16 (67 69 56 45,
 						                		 69 78 71 63,
@@ -99,7 +99,7 @@ proc mcmc data=H6DMCLVHV seed=4989 nbi=10000 nmc=400000 thin=80 outpost=POST mon
   %end;
 
   %if &prior. = 2 or &prior. = 3 %then %do;
-  /*©•ª‚ÅŠÖ”‚ğİ’è‚µ‚½ê‡‚Í‰Šú’l‚ğİ’è‚·‚é•K—v‚ ‚è*/
+  /*è‡ªåˆ†ã§é–¢æ•°ã‚’è¨­å®šã—ãŸå ´åˆã¯åˆæœŸå€¤ã‚’è¨­å®šã™ã‚‹å¿…è¦ã‚ã‚Š*/
   parms beta_tm {8 15 21 24};
   %end;
   %if &prior.=3 %then %do;
@@ -134,7 +134,7 @@ proc mcmc data=H6DMCLVHV seed=4989 nbi=10000 nmc=400000 thin=80 outpost=POST mon
   %end;
 
   prior beta_m: ~ general(0);
-  /*Diffuse prior(–{PRG‚Å‚Íimproper prior‚ğw’è)*/
+  /*Diffuse prior(æœ¬PRGã§ã¯improper priorã‚’æŒ‡å®š)*/
   %if &prior.=1 %then %do;
   prior beta_tm: ~ general(0);
   %end;
@@ -165,7 +165,7 @@ proc mcmc data=H6DMCLVHV seed=4989 nbi=10000 nmc=400000 thin=80 outpost=POST mon
  model y ~ mvn(mu, R);
 run;
 
-/*ÄŠi”[*/
+/*å†æ ¼ç´*/
 %if &ess. = 1 %then %do;
 	%let prior=&prior_s.;
 %end;
@@ -216,7 +216,7 @@ quit;
 /*BMMRM*/
 %MCMC(ess=0);
 
-/*ESS‚ÌZo‚Ímixture priro‚Ì‚İÀs*/
+/*ESSã®ç®—å‡ºã¯mixture priroã®ã¿å®Ÿè¡Œ*/
 %if &prior. = 2 or &prior. = 3 %then %do;
 %MCMC(ess=1);
 %end;
@@ -264,7 +264,7 @@ run;
 
 %end;
 
-/*ESS(¬‰Ê•¨‚Å‚Í"prior ESS‚ğo—Í")*/
+/*ESS(æˆæœç‰©ã§ã¯"prior ESSã‚’å‡ºåŠ›")*/
 %if &prior. = 2 or &prior. = 3 %then %do;
 proc means data=base_ESS noprint;
 	var prior_ESS posterior_ESS;
@@ -272,12 +272,12 @@ proc means data=base_ESS noprint;
 run;
 %end;
 
-/*Power and alpha error(suc=1‚ÌŠ„‡‚ªŒŸo—Í‚Ü‚½‚Íalpha error)*/
+/*Power and alpha error(suc=1ã®å‰²åˆãŒæ¤œå‡ºåŠ›ã¾ãŸã¯alpha error)*/
 proc freq data=base;
 	table suc / out=tf32.sim_p&prior._w%sysevalf(&mixw. * 10)_s&scenario._suc&suc._n&nperg.;
 run;
 
-/*Bias and MSE(prior=3‚Ìê‡‚Ímix weight‚Ì„’è’l‚ào—Í)*/
+/*Bias and MSE(prior=3ã®å ´åˆã¯mix weightã®æ¨å®šå€¤ã‚‚å‡ºåŠ›)*/
 proc sort data=base_smry; by Parameter; run;
 data base_smry2;
 	set base_smry;
@@ -310,11 +310,11 @@ ods listing;
 ods html;
 options source notes;
 
-%put ˆ—ŠÔ = %sysevalf( %sysfunc( datetime() ) - &START_TIME. ); 
+%put å‡¦ç†æ™‚é–“ = %sysevalf( %sysfunc( datetime() ) - &START_TIME. ); 
 
 %mend;
 
-/*macroÀs—áBmixw‚Íprior=2‚Ì‚Ì‚İ—LŒø*/
+/*macroå®Ÿè¡Œä¾‹ã€‚mixwã¯prior=2ã®æ™‚ã®ã¿æœ‰åŠ¹*/
 %sim(nsim=3000, scenario=1, prior=1, mixw=1, suc=95, nperg=17);
 %sim(nsim=3000, scenario=3, prior=2, mixw=0.8, suc=95, nperg=51);
 %sim(nsim=3000, scenario=5, prior=3, mixw=1, suc=95, nperg=51);
