@@ -1,4 +1,0 @@
-     prob_go prob_nogo           design
-1 0.04269730 0.9573027            Dirac
-2 0.08623522 0.9137648 Informative Beta
-3 0.22420439 0.7757956       Vague Beta
